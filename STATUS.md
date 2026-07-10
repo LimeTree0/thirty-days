@@ -21,18 +21,18 @@
 
 ## 진행 중
 
-- [ ] Git 리허설: Conventional Commits로 킥오프 문서 커밋 쌓기
-- [ ] Git 리허설: 머지 3종 실험 (merge / squash / rebase)
-- [ ] Git 리허설: 충돌 재현과 해소 3회 (merge / rebase / abort)
+- [x] Git 리허설: Conventional Commits로 킥오프 문서 커밋 쌓기
+- [x] Git 리허설: 머지 3종 실험 (merge / squash / rebase)
+- [x] Git 리허설: 충돌 재현과 해소 3회 (merge / rebase / abort)
 
 ## 다음 할 일
 
-- [ ] ADR-001: 머지 전략 결정
-- [ ] ADR 템플릿 + `docs/adr/` 디렉토리 추가
-- [ ] `.gitignore` 추가 (시크릿 패턴 포함)
-- [ ] `frontend/CLAUDE.md` 페르소나 초안
-- [ ] `docs/requirements.md` 초안 — **maintainer 작성** 영역
-- [ ] `docs/slo.md` 초안 — **maintainer 작성** 영역
+- [x] ADR-001: 머지 전략 결정
+- [x] ADR 템플릿 + `docs/adr/` 디렉토리 추가
+- [x] `.gitignore` 추가 (시크릿 패턴 포함)
+- [x] `frontend/CLAUDE.md` 페르소나 초안
+- [x] `docs/requirements.md` 초안 — **maintainer 작성** 영역
+- [x] `docs/slo.md` 초안 — **maintainer 작성** 영역
 
 ## 미결 사항 (열린 질문)
 
