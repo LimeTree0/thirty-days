@@ -1,7 +1,6 @@
-## Claude code Settings
-.claude/
-.claude-code/
-.claude-code-settings/
-.claude-code-settings.json/
-.claude-code-settings.json.
-.claude-code-settings.json.
+# Claude Code local settings
+.claude/settings.local.json
+
+# OS
+.DS_Store
+Thumbs.db
