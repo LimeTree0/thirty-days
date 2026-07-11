@@ -3,45 +3,51 @@
 > PL 세션 싱크의 기준 파일. 세션 종료 시 갱신한다.
 > 갱신에 1분 이상 걸리면 이 문서가 너무 무거워진 것이다.
 
-**최종 갱신**: 2026-07-10
+**최종 갱신**: 2026-07-11
 
 ---
 
 ## 현재 단계
 
-**0막 — 준비** (Git 워크플로 리허설 진행 중)
+**0막 — 준비** 마무리 단계. 1막 진입 직전.
 
 ## 최근 결정
 
-- 리포 이름 `thirty-days`, GitHub 공개 리포로 진행
-- main 브랜치 Ruleset 보호 (PR 필수, bypass 없음)
-- 커밋: Conventional Commits, 영어. 본문은 하루 1~2개만 연습 (과부하 방지)
-- 머지 방식: **미정** — 머지 3종 실험 후 ADR-001에서 결정
-- 킥오프 문서 체계 확정: PROJECT.md(헌장) / STATUS.md(상태) / CONTRIBUTING.md(Git 규칙)
+- **요구사항 v0.1 확정** (`docs/requirements.md`). 미결 항목 없이 확정,
+  변경은 이 문서를 고치는 PR부터.
+- **SLO 선언은 간막으로 연기** (2026-07-11). `docs/slo.md`는 배포·공개
+  시점에 맞춰 작성. → PROJECT.md의 0막 완료 기준 재정의 필요 (아래 미결)
+- ADR-001 머지 전략 확정 (PR #2)
+- PR 템플릿 도입 (PR #3)
+- 자기 답변 채택은 48시간 후부터, 채택된/up표 받은 답변이 달린 질문 삭제
+  금지 등 SO 정책 준용 항목 확정 (requirements.md 3.2, 3.5)
 
 ## 진행 중
 
-- [x] Git 리허설: Conventional Commits로 킥오프 문서 커밋 쌓기
-- [x] Git 리허설: 머지 3종 실험 (merge / squash / rebase)
-- [x] Git 리허설: 충돌 재현과 해소 3회 (merge / rebase / abort)
+없음. 0막의 Git 리허설·킥오프 문서·요구사항 확정이 모두 끝났다.
 
 ## 다음 할 일
 
-- [x] ADR-001: 머지 전략 결정
-- [x] ADR 템플릿 + `docs/adr/` 디렉토리 추가
-- [x] `.gitignore` 추가 (시크릿 패턴 포함)
-- [x] `frontend/CLAUDE.md` 페르소나 초안
-- [x] `docs/requirements.md` 초안 — **maintainer 작성** 영역
-- [x] `docs/slo.md` 초안 — **maintainer 작성** 영역
+- [ ] **ADR-002: DB 선택** (PostgreSQL vs MySQL). 1막 스캐폴딩 전에 확정
+- [ ] `frontend/CLAUDE.md` 페르소나 초안 — **maintainer 작성** 영역
+      (직전 STATUS에서 완료 표기됐으나 파일 없음, 재개)
+- [ ] PROJECT.md 0막 완료 기준 재정의: "요구사항 문서 머지"까지로 축소하고
+      SLO 선언은 간막 완료 기준으로 이동
+- [ ] 1막 킥오프: 백엔드 프로젝트 스캐폴딩(Spring Boot) 및 초기 커밋
 
 ## 미결 사항 (열린 질문)
 
-- DB 선택 (PostgreSQL vs MySQL) → ADR-002 예정
-- CONTRIBUTING.md 4장: API 계약 변경 PR의 리뷰어를 Claude Code로 명시했는데,
-  실제 운용(공식 승인 불가)에 맞춰 문구를 낮출지 여부
+- **DB 선택** (PostgreSQL vs MySQL) → ADR-002 예정
+- **목록 페이지네이션 방식** (offset vs cursor) → 목록 구현 착수 시 ADR
+  (requirements.md 3.2)
+- **검색 · 태그 필터 조합** → 검색 기능 구현 단계에서 이슈 등록
+  (requirements.md 3.7)
+- CONTRIBUTING.md 4장: API 계약 변경 PR의 리뷰어를 Claude Code로 명시한
+  문구를 실제 운용(공식 승인 불가)에 맞춰 낮출지 여부
 
 ## 세션 로그
 
 | 날짜 | 요약 |
 |------|------|
 | 2026-07-10 | 킥오프. 프로젝트 구조/역할/규칙 합의, 리포 생성, Git 리허설 시작 |
+| 2026-07-11 | Git 리허설 마무리(머지 3종, 충돌 3회). ADR-001 머지 전략 확정, PR 템플릿 도입, 요구사항 v0.1 확정 및 `docs/` 이동, SLO를 간막으로 연기 |
