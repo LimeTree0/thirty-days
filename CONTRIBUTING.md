@@ -148,6 +148,17 @@ Refs: #23
 git worktree)에서 작업한다. 같은 작업 디렉토리를 공유하지 않는다.
 - 동기화는 오직 원격(GitHub)의 push/pull로만 일어난다.
 
+
+
+### 2.4 GitHub 계정 분리
+
+- Claude Code는 maintainer와 **별도의 GitHub 계정**(`@Limecoding-AI-Agent`)으로
+  커밋·push·PR을 낸다. 리포 로컬 `git config`로만 적용하고 전역 config는
+  건드리지 않는다.
+- 목적은 프론트 PR의 리뷰 지정·알림·리뷰 승인이 실제 GitHub 기능으로
+  동작하게 하는 것이다. 같은 계정을 공유하면 자기 PR을 자기가 리뷰하는
+  형태가 되어 GitHub이 리뷰어 지정을 거부한다.
+
 ---
 
 
@@ -213,7 +224,7 @@ git worktree)에서 작업한다. 같은 작업 디렉토리를 공유하지 않
 | `openapi.json`       | maintainer (백엔드) | springdoc 생성 산출물. 프론트는 읽기 전용. 계약 변경 요청은 파일 수정이 아니라 **이슈로** 제기한다 |
 | `STATUS.md`          | maintainer       | PL 세션 종료 시 갱신                                                   |
 | `docs/adr/**`        | maintainer       | 결정 확정 후에만 머지                                                    |
-| `frontend/CLAUDE.md` | 공동               | 페르소나 정의부: maintainer / 합의 누적부: Claude Code                      |
+| `CLAUDE.md`          | 공동               | 페르소나 정의부: maintainer / 합의 누적부: Claude Code                      |
 
 
 ---
