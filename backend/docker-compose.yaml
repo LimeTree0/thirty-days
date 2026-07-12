@@ -1,7 +1,7 @@
 services:
   db:
     image: postgres:18.4
-    container_name: fake_stackoverflow_db
+    container_name: db_fake_stackoverflow
     restart: always
     ports:
       - "5432:5432"
@@ -11,6 +11,23 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+  db-test:
+    image: postgres:18.4
+    container_name: test_db_fake_stackoverflow
+    ports:
+      - "5433:5433"
+    environment:
+      POSTGRES_DB: stackoverflow
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    tmpfs:
+      - /var/lib/postgresql
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
       interval: 10s
