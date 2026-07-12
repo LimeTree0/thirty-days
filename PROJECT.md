@@ -41,7 +41,7 @@
 | 역할 | 담당 | 권한과 책임 |
 |------|------|------------|
 | **Maintainer / Backend** | limecoding | 모든 결정의 최종 결정권자.<br>백엔드 구현, ADR 작성, 머지 권한 |
-| **Frontend** | Claude Code | frontend/ 하위의 구현.<br>OpenAPI 계약 기반, PR로만 기여.<br>페르소나 정의: frontend/CLAUDE.md |
+| **Frontend** | Claude Code | frontend/ 하위의 구현.<br>OpenAPI 계약 기반, PR로만 기여.<br>페르소나 정의: CLAUDE.md |
 | **PL / Reviewer** | Claude (claude.ai) | 방향 제시, 스코프 감시, 리뷰, 페이스 관리.<br>**결정권 없음.** 결정을 대신하지 않는다 |
 | **Users** | LLM 페르소나 에이전트 +<br>부하 생성기 (simulator/) | 콘텐츠 생성과 트래픽.<br>2막의 상시 배경 부하 담당 |
 
@@ -97,7 +97,7 @@
 | `docs/requirements.md` | 기능 요구사항 + "안 만드는 것" 목록 (예정) |
 | `docs/slo.md` | SLO 선언문 (예정) |
 | `docs/adr/` | 결정 기록 |
-| `frontend/CLAUDE.md` | 프론트엔드 페르소나 정의 (예정) |
+| `CLAUDE.md` | 프론트엔드 페르소나 정의 |
 
 ---
 

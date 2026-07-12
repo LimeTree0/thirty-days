@@ -213,7 +213,7 @@ git worktree)에서 작업한다. 같은 작업 디렉토리를 공유하지 않
 | `openapi.json`       | maintainer (백엔드) | springdoc 생성 산출물. 프론트는 읽기 전용. 계약 변경 요청은 파일 수정이 아니라 **이슈로** 제기한다 |
 | `STATUS.md`          | maintainer       | PL 세션 종료 시 갱신                                                   |
 | `docs/adr/**`        | maintainer       | 결정 확정 후에만 머지                                                    |
-| `frontend/CLAUDE.md` | 공동               | 페르소나 정의부: maintainer / 합의 누적부: Claude Code                      |
+| `CLAUDE.md`          | 공동               | 페르소나 정의부: maintainer / 합의 누적부: Claude Code                      |
 
 
 ---

@@ -46,7 +46,7 @@ Merge로만 제한하여 설정으로 강제한다.
 3. **이원화 (백엔드 merge / 프론트 squash)** — Claude Code의 커밋 품질을
    통제하기 어렵다는 우려에서 검토. 그러나 GitHub 설정으로는 강제할 수
    없어 머지하는 사람의 규율로만 유지되고, 규칙 복잡도 대비 이득이
-   불분명하여 기각. 대신 프론트 커밋 규칙을 frontend/CLAUDE.md에 명시해
+   불분명하여 기각. 대신 프론트 커밋 규칙을 CLAUDE.md에 명시해
    같은 컨벤션을 따르게 하고, 미달 시 PR 리뷰에서 수정을 요구하는 것으로
    통제한다.
 
@@ -54,5 +54,5 @@ Merge로만 제한하여 설정으로 강제한다.
 
 - 실험 PR: #1 (merge commit), #2 (squash), #3 (rebase)
 - 후속 작업: CONTRIBUTING.md 3.4 갱신, Ruleset 설정 변경,
-  frontend/CLAUDE.md에 커밋 컨벤션 조항 추가
+  CLAUDE.md에 커밋 컨벤션 조항 추가
 - Michael Nygard, "Documenting Architecture Decisions" (형식 출처)
