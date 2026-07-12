@@ -21,7 +21,7 @@ services:
     image: postgres:18.4
     container_name: test_db_fake_stackoverflow
     ports:
-      - "5433:5433"
+      - "5433:5432"
     environment:
       POSTGRES_DB: stackoverflow
       POSTGRES_USER: ${POSTGRES_USER}
