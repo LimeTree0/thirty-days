@@ -17,31 +17,37 @@
 
 ## 최근 결정
 
-- **0막 종료 선언.** 마일스톤 `v0.1` 생성, requirements 3장을 이슈
-  12개(#12~#23)로 분해 완료. 구현 순서는 이슈의 「선행」 참조.
-- **CLAUDE.md는 리포 루트에 배치.** 페르소나 정의부(경계·금지)는
-  maintainer 소유, 그 외는 프론트가 필요에 따라 수정하되 PR 리뷰에서
-  정의부 변경 여부를 확인한다. → 기존 문서의 `frontend/CLAUDE.md`
-  참조 경로 수정 필요 (아래 할 일)
-- **Claude Code 전용 GitHub 계정 운용.** 프론트 PR의 공식 리뷰·알림이
-  실제 GitHub 기능으로 동작하게 됨.
-- `.gitignore` 도입, `.claude/settings.local.json` 재유입 차단 (PR #11)
+- **ADR-0002: 메인 DB로 PostgreSQL 채택** (승인 2026-07-12, #12 종결).
+  결정 축은 기능이 아니라 학습 투자의 회수처 — 상세는 ADR 본문.
+- **백엔드 스캐폴딩 완료** (#13, PR #30). 확정 사항: Gradle Kotlin DSL /
+  Java 25 + Spring Boot 4.1 / 도메인 우선 패키지(근거는 #13 코멘트) /
+  Docker Compose로 dev(5432, 영속)·test(5433, tmpfs 휘발) DB 분리 /
+  테스트는 진짜 PostgreSQL 대상(H2·Testcontainers 기각, #13 코멘트) /
+  Actuator 포함(health로 DB 연결 검증, 2막 모니터링 기반)
+- **자격증명 3단 정책.** test: 고정값 커밋 / local: 기본값 placeholder /
+  prod: 환경변수 주입 only. 판정 기준은 "유출 시 피해"
+- **GitGuardian 오탐 처리 방식 확정.** 인시던트 단위 ignore(사유 기록)
+  우선, 경로 제외는 최후 수단. `.gitguardian.yaml`은 ignored_matches로
+  운용 — 발효는 간막 CI부터
 
 ## 진행 중
 
-없음. 다음 세션에서 ADR-0002(#12)부터 착수.
+없음. 다음 세션은 OpenAPI 계약 전략 결정부터.
 
 ## 다음 할 일
 
-- [ ] **ADR-0002: DB 선택** (#12) — 1막 첫 안건, 스캐폴딩(#13)의 블로커
-- [ ] `.gitignore` 정리: 존재하지 않는 패턴 제거, `.claude/` 통째 무시 vs
-      `settings.local.json`만 무시 중 방식 확정
-- [ ] CONTRIBUTING.md·ADR-0001의 `frontend/CLAUDE.md` 참조를 루트 경로로 수정
-- [ ] PROJECT.md 0막 완료 기준 재정의: "요구사항 문서 머지"까지로 축소하고
-      SLO 선언은 간막 완료 기준으로 이동
+- [ ] **OpenAPI contract-first vs code-first 결정** — 프론트(Claude Code)
+      착수 시점의 블로커. Boot 4.x와 도구(springdoc 등) 호환성 확인 포함
+- [ ] 첫 도메인 구현 착수 (구현 순서는 이슈 「선행」 참조)
+- [ ] CONTRIBUTING §6 보강: 시크릿 판정 기준("유출 시 피해") 및
+      스캐너 경보 트리아지 절차 1줄 추가
 
 ## 미결 사항 (열린 질문)
 
+- **스키마 관리 방식** (ddl-auto 배제, Flyway 등 마이그레이션 도구)
+  → 첫 엔티티 작성 시 정식 결정 (ADR 여부 포함)
+- **테스트 간 데이터 정리 전략** (compose test DB는 컨테이너 생존 중
+  상태 공유) → 첫 테스트 작성 시 설계
 - **목록 페이지네이션 방식** (offset vs cursor) → #17 착수 시 ADR
 - **검색 · 태그 필터 조합** → #23 착수 시 이슈 등록
 - CONTRIBUTING.md 4장: API 계약 변경 PR의 리뷰어 문구 — Claude Code
@@ -55,3 +61,4 @@
 | 2026-07-10 | 킥오프. 프로젝트 구조/역할/규칙 합의, 리포 생성, Git 리허설 시작 |
 | 2026-07-11 | Git 리허설 마무리(머지 3종, 충돌 3회). ADR-001 머지 전략 확정, PR 템플릿 도입, 요구사항 v0.1 확정 및 `docs/` 이동, SLO를 간막으로 연기 |
 | 2026-07-12 | CLAUDE.md·requirements 머지, .gitignore 도입, Claude Code 전용 계정 분리, 마일스톤 v0.1 + 이슈 12개(#12~#23) 등록. **0막 종료, 1막 개막** |
+| 2026-07-12 | ADR-0002(PostgreSQL) 승인·머지, #12 종결. #13 스캐폴딩 완주(PR #30): compose dev/test DB, 프로파일·Actuator, README·패키지 컨벤션. GitGuardian 첫 경보 트리아지(오탐 판정·기록). 잡무 3건 정리 |
