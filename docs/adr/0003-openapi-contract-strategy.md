@@ -2,10 +2,8 @@
 
 ## 상태
 
-제안됨
-
-<!-- 승인 전제 조건: springdoc 빌드 타임 스펙 추출이
-     Boot 4.1 + Gradle Kotlin DSL 조합에서 실제로 작동함을 스파이크로 확인 -->
+승인됨 (2026-07-15). 승인 전제였던 springdoc 빌드 타임 스펙 추출
+스파이크는 contract-gate 워크플로 구현·CI 실증(PR #35)으로 충족.
 
 ## 맥락
 
@@ -93,8 +91,9 @@ diff하여 불일치면 빌드를 실패시킨다. CI 통과는 머지의 필요
 - ADR-0001 (머지 전략), ADR-0002 (PostgreSQL 채택)
 - springdoc-openapi Spring Boot 4 지원: https://springdoc.org/v4/
 - 후속 항목 (이 ADR의 승인과 별개로 추적):
-  - [ ] 스파이크: 빌드 타임 스펙 추출(gradle plugin vs 테스트 컨텍스트
+  - [x] 스파이크: 빌드 타임 스펙 추출(gradle plugin vs 테스트 컨텍스트
         추출)이 Boot 4.1 + Gradle Kotlin DSL에서 작동 확인 — 승인 전제
+        (PR #35 contract-gate 워크플로에서 실증, 2026-07-15)
   - [ ] 에러 응답 통일 스키마(RFC 7807 / `ProblemDetail`) 검토 —
         첫 컨트롤러 스텁 전
   - [ ] CONTRIBUTING 4장: 계약 diff 발생 PR의 티어 승격 규칙 명문화
