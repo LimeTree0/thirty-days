@@ -3,7 +3,7 @@
 > PL 세션 싱크의 기준 파일. 세션 종료 시 갱신한다.
 > 갱신에 1분 이상 걸리면 이 문서가 너무 무거워진 것이다.
 
-**최종 갱신**: 2026-07-12
+**최종 갱신**: 2026-07-14
 
 ---
 
@@ -32,15 +32,25 @@
 
 ## 진행 중
 
-없음. 다음 세션은 OpenAPI 계약 전략 결정부터.
+- **ADR-0003 제안 머지** (PR #33, 2026-07-13). code-first + 커밋된
+  `openapi.json`을 권위로 두고 CI diff 게이트 + 의도적 승격.
+  승인 전제는 springdoc 빌드 타임 스펙 추출이 Boot 4.1 + Gradle
+  Kotlin DSL에서 실제 작동하는지 스파이크로 확인하는 것
 
 ## 다음 할 일
 
-- [ ] **OpenAPI contract-first vs code-first 결정** — 프론트(Claude Code)
-      착수 시점의 블로커. Boot 4.x와 도구(springdoc 등) 호환성 확인 포함
-- [ ] 첫 도메인 구현 착수 (구현 순서는 이슈 「선행」 참조)
+- [ ] **스파이크: 빌드 타임 스펙 추출** (gradle plugin vs 테스트 컨텍스트
+      추출) — ADR-0003 승인 전제, 프론트 착수의 실질 블로커
+- [ ] 에러 응답 통일 스키마(RFC 7807 / `ProblemDetail`) 검토 —
+      첫 컨트롤러 스텁 전 확정
+- [ ] 첫 도메인 구현 착수 (구현 순서는 이슈 「선행」 참조).
+      첫 스텁에서 `openapi.json` 최초 승격
+- [ ] CONTRIBUTING §4 보강: 계약 diff 발생 PR의 티어 승격 규칙
+      명문화 (미결 "리뷰어 문구 재판단"과 함께 처리)
 - [ ] CONTRIBUTING §6 보강: 시크릿 판정 기준("유출 시 피해") 및
       스캐너 경보 트리아지 절차 1줄 추가
+- [ ] frontend/CLAUDE.md: 계약 변경 제안 경로(이슈/코멘트, 파일 직접
+      수정 금지) 명문화
 
 ## 미결 사항 (열린 질문)
 
@@ -62,3 +72,4 @@
 | 2026-07-11 | Git 리허설 마무리(머지 3종, 충돌 3회). ADR-001 머지 전략 확정, PR 템플릿 도입, 요구사항 v0.1 확정 및 `docs/` 이동, SLO를 간막으로 연기 |
 | 2026-07-12 | CLAUDE.md·requirements 머지, .gitignore 도입, Claude Code 전용 계정 분리, 마일스톤 v0.1 + 이슈 12개(#12~#23) 등록. **0막 종료, 1막 개막** |
 | 2026-07-12 | ADR-0002(PostgreSQL) 승인·머지, #12 종결. #13 스캐폴딩 완주(PR #30): compose dev/test DB, 프로파일·Actuator, README·패키지 컨벤션. GitGuardian 첫 경보 트리아지(오탐 판정·기록). 잡무 3건 정리 |
+| 2026-07-13 | ADR-0003 제안 머지(PR #33, #15 관련): OpenAPI code-first + 커밋된 계약 권위 + CI diff 게이트 + 의도적 승격. 승인 전제로 springdoc/Boot 4.1 스파이크 남김, 후속(에러 스키마·CONTRIBUTING §4·frontend/CLAUDE.md) 도출 |
