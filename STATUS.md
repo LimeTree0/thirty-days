@@ -3,7 +3,7 @@
 > PL 세션 싱크의 기준 파일. 세션 종료 시 갱신한다.
 > 갱신에 1분 이상 걸리면 이 문서가 너무 무거워진 것이다.
 
-**최종 갱신**: 2026-07-14
+**최종 갱신**: 2026-07-15
 
 ---
 
@@ -29,18 +29,19 @@
 - **GitGuardian 오탐 처리 방식 확정.** 인시던트 단위 ignore(사유 기록)
   우선, 경로 제외는 최후 수단. `.gitguardian.yaml`은 ignored_matches로
   운용 — 발효는 간막 CI부터
+- **ADR-0003 승인 + contract-gate 워크플로 채택** (PR #35, 2026-07-15).
+  springdoc-openapi-gradle-plugin 1.9.0 + `springdoc-openapi-starter-webmvc-api`
+  3.0.3(Boot 4.1)로 빌드 타임에 스펙 생성 → 커밋된 `openapi.json`과
+  diff. canonicalize는 객체 키만 재귀 정렬(배열 순서 보존). CI에서
+  intentional break·restore 커밋으로 diff 감지·복구 동작 실증.
+  ADR-0003 승인 전제 스파이크가 이 구현으로 충족
 
 ## 진행 중
 
-- **ADR-0003 제안 머지** (PR #33, 2026-07-13). code-first + 커밋된
-  `openapi.json`을 권위로 두고 CI diff 게이트 + 의도적 승격.
-  승인 전제는 springdoc 빌드 타임 스펙 추출이 Boot 4.1 + Gradle
-  Kotlin DSL에서 실제 작동하는지 스파이크로 확인하는 것
+- (없음)
 
 ## 다음 할 일
 
-- [ ] **스파이크: 빌드 타임 스펙 추출** (gradle plugin vs 테스트 컨텍스트
-      추출) — ADR-0003 승인 전제, 프론트 착수의 실질 블로커
 - [ ] 에러 응답 통일 스키마(RFC 7807 / `ProblemDetail`) 검토 —
       첫 컨트롤러 스텁 전 확정
 - [ ] 첫 도메인 구현 착수 (구현 순서는 이슈 「선행」 참조).
@@ -73,3 +74,5 @@
 | 2026-07-12 | CLAUDE.md·requirements 머지, .gitignore 도입, Claude Code 전용 계정 분리, 마일스톤 v0.1 + 이슈 12개(#12~#23) 등록. **0막 종료, 1막 개막** |
 | 2026-07-12 | ADR-0002(PostgreSQL) 승인·머지, #12 종결. #13 스캐폴딩 완주(PR #30): compose dev/test DB, 프로파일·Actuator, README·패키지 컨벤션. GitGuardian 첫 경보 트리아지(오탐 판정·기록). 잡무 3건 정리 |
 | 2026-07-13 | ADR-0003 제안 머지(PR #33, #15 관련): OpenAPI code-first + 커밋된 계약 권위 + CI diff 게이트 + 의도적 승격. 승인 전제로 springdoc/Boot 4.1 스파이크 남김, 후속(에러 스키마·CONTRIBUTING §4·frontend/CLAUDE.md) 도출 |
+| 2026-07-14 | contract-gate 워크플로 구현 착수(브랜치 `chore/openapi-check-workflow`): springdoc gradle plugin 1.9.0 + starter-webmvc-api 3.0.3, `SPRING_PROFILES_ACTIVE=test`로 5433 프로필 활성, `scripts/canonicalize.mjs`(객체 키만 정렬). 초기 커밋 후 gradlew 실행 권한 픽스, diff 게이트 실증용 test/restore 커밋 시퀀스 |
+| 2026-07-15 | contract-gate 머지(PR #35). ADR-0003 승인 승격 — 승인 전제 스파이크가 이 구현·CI 실증으로 충족. 프론트 착수의 실질 블로커 해소 |
