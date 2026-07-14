@@ -1,0 +1,59 @@
+name: contract-gate # Actions 탭에 표시될 이름
+
+on:
+  pull_request:
+
+jobs:
+  contract-gate:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:18.4
+        ports:
+          - 5433:5432
+        env:
+          POSTGRES_USER: admin
+          POSTGRES_PASSWORD: admin1!
+          POSTGRES_DB: stackoverflow
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: "corretto"
+          java-version: "25"
+          cache: "gradle"
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Generate spec
+        working-directory: backend
+        env:
+          SPRING_PROFILES_ACTIVE: test
+        run: ./gradlew generateOpenApiDocs
+
+      - name: Canonicalize specs
+        run: |
+          node scripts/canonicalize.mjs backend/build/openapi.json > canonical-generated.json
+          node scripts/canonicalize.mjs openapi.json > canonical-committed.json
+
+      - name: Compare specs
+        run: |
+          if ! diff canonical-generated.json canonical-committed.json; then
+            echo "::error::생성된 스펙이 커밋된 openapi.json과 다릅니다"
+            echo "의도한 변경이면: (승격 절차 — 정규화 돌려서 openapi.json 갱신 커밋)"
+            echo "의도 안 한 변경이면: (컨트롤러/어노테이션 변경을 되돌리세요)"
+            exit 1
+          fi
